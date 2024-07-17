@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
@@ -96,6 +96,7 @@
      fzf
      bat
      zoxide
+     lazygit
 
      # EyeCandies
      hyprland
@@ -120,6 +121,7 @@
      wireplumber
      networkmanagerapplet
      dunst
+     home-manager
 
      # Utilities
      slack
@@ -168,6 +170,13 @@
   # Hint Electron apps to use wayland
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+  };
+
+  # Set System Variable
+  environment.variables = {
+    EDITOR = "helix";
+    BROWSER = "brave";
+    TERMINAL = "alacritty";
   };
 
   # Enable Screensharing
