@@ -29,7 +29,6 @@ with lib;
           "memory"
         ];
         modules-right = [
-          "idle_inhibitor"
           "custom/hyprbindings"
           "custom/notification"
           "custom/exit"
@@ -236,7 +235,7 @@ with lib;
         tooltip label {
           color: #${config.stylix.base16Scheme.base08};
         }
-        #window, #pulseaudio, #cpu, #memory,  {
+        #window, #pulseaudio, #cpu, #memory {
           font-weight: bold;
           margin: 4px 0px;
           margin-left: 7px;
@@ -253,7 +252,7 @@ with lib;
           padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 40px 0px;
         }
-        #idle_inhibitor, #custom-hyprbindings, #network, #battery,
+        #idle-inhibitor, #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};
