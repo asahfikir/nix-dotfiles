@@ -8,7 +8,7 @@
 
 let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
-  inherit (import ../hosts/${host}/variables.nix) clock24h;
+  inherit (import ../variables.nix) clock24h;
 in
 with lib;
 {
@@ -27,9 +27,9 @@ with lib;
           "pulseaudio"
           "cpu"
           "memory"
-          "idle_inhibitor"
         ];
         modules-right = [
+          "idle_inhibitor"
           "custom/hyprbindings"
           "custom/notification"
           "custom/exit"
@@ -119,14 +119,14 @@ with lib;
         };
         "custom/startmenu" = {
           tooltip = false;
-          format = "";
+          format= "";
           # exec = "rofi -show drun";
           on-click = "sleep 0.1 && rofi-launcher";
         };
         "custom/hyprbindings" = {
           tooltip = false;
-          format = "󱕴";
-          on-click = "sleep 0.1 && list-hypr-bindings";
+          format = "";
+          on-click = "sleep 0.1 && ~/.dotfiles/scripts/walswitcher.sh";
         };
         "idle_inhibitor" = {
           format = "{icon}";
@@ -236,7 +236,7 @@ with lib;
         tooltip label {
           color: #${config.stylix.base16Scheme.base08};
         }
-        #window, #pulseaudio, #cpu, #memory, #idle_inhibitor {
+        #window, #pulseaudio, #cpu, #memory,  {
           font-weight: bold;
           margin: 4px 0px;
           margin-left: 7px;
@@ -253,7 +253,7 @@ with lib;
           padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 40px 0px;
         }
-        #custom-hyprbindings, #network, #battery,
+        #idle_inhibitor, #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};
