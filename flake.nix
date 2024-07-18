@@ -1,20 +1,33 @@
 {
-  description = "AsahFikir NixOS Flake Configuration based on forked ZaneyOS";
+  description = "AsahFikir NixOS Flake Configuration based on Mysterio77 Starter Template";
 
   inputs = {
+    # Nixpkgs
     nixpkgs = {
       url = "nixpkgs/nixos-24.05";
     };
+
+    # Stylix - base16 color
     stylix.url = "github:danth/stylix";
-    # home-manager = {
-    #   url = "github:nix-community/home-manager;
-    #   inputs.nixpkgs.follow = "nixpkgs";
-    # };
+
+    # Home Manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs:
     let
+      inherit (self) outputs;
       system = "x86_64-linux";
+      host = "DLLPTP";
+      username = "fikri";
       lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
@@ -26,15 +39,21 @@
       # System wide configuration
       nixosConfigurations = {
         # configuration for DLLPTP hostname
-        DLLPTP = lib.nixosSystem {
-          specialArgs = { inherit inputs system; };
-          system = "${system}";
+        ${host} = lib.nixosSystem {
+          specialArgs = { inherit inputs outputs system; };
+          system = "x86_64-linux";
           # use the configuration from the configuration we copied from /etc/nixos
-          modules = [ ./configuration.nix inputs.stylix.nixosModules.stylix ];
+          modules = [
+            # main configuration
+            ./configuration.nix
+
+            # Coloring purposes
+            inputs.stylix.nixosModules.stylix
+          ];
         };
       };
-      
-  
+
+
       # Home Manager Configuration;
       # homeConfigurations."fikri" = home-manager.lib.homeManagerConfiguration {
       #   inherit pkgs;

@@ -2,13 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ inputs, outputs, config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # input home manager
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; };
+    users = {
+      # Import your home-manager configuration
+      fikri = import ./home.nix;
+    };
+  };
 
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
@@ -55,6 +64,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowInsecure = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -125,6 +135,7 @@
 
      # Utilities
      slack
+     obs-studio
      killall
      gum
      htop
@@ -140,11 +151,11 @@
      # Browsers
      brave
      firefox-wayland
-     obs-studio
+     arc-browser
 
      # Misc
      fastfetch
-  ]) ++ (with pkgs.gnome; [ 
+  ]) ++ (with pkgs.gnome; [
     nautilus # file manager
     zenity # shell dialog
     gnome-tweaks # eye candy
@@ -181,12 +192,14 @@
 
   # Enable Screensharing
   services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
+  xdg = {
+    portal = {
+      enable = true;
+      wlr.enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+    };
   };
 
   # fix issue with waybar
@@ -218,7 +231,7 @@
 
   # Let's setup ZSH
   # for global user
-  users.defaultUserShell=pkgs.zsh; 
+  users.defaultUserShell=pkgs.zsh;
 
   # enable zsh and oh my zsh
   programs = {
@@ -241,7 +254,7 @@
 		  };
 	  };
   };
-  
+
   # Enable automatic garbage collection
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";  # Set to daily, monthly, etc., as needed
