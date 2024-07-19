@@ -133,8 +133,8 @@ with lib;
           bind = ${modifier},B,exec,${browser}
           bind = ${modifier},F,fullscreen,
           bind = ${modifier},Q,killactive,
-          bind = ${modifier},E,exec,thunar
-          bind = ${modifier}CTRL,Return,exec,rofi-launcher
+          bind = ${modifier},E,exec,nautilus
+          bind = ${modifier}CTRL,Return,exec,rofi -show run
           bind = ${modifier},P,pseudo,
           bind = ${modifier}SHIFT,W,exec,~/.dotfiles/scripts/walswitcher.sh
           # bind = ${modifier}SHIFT,N,exec,swaync-client -rs
@@ -145,7 +145,7 @@ with lib;
 
           # Select region screenshot
           bind = ${modifier}+Shift, Print, exec, grim -g "$(slurp)" - | tee ~/Pictures/screenshot-$(date +%Y-%m-%d-%H-%M-%S).png | wl-copy
-          
+
           bind = ${modifier},S,exec,screenshootin
           bind = ${modifier},O,exec,obs
           # bind = ${modifier},C,exec,hyprpicker -a  # colorpicker
