@@ -18,7 +18,7 @@ in
   # Import Program Configurations
   imports = [
     # ../../config/emoji.nix
-    # ../../config/hyprland.nix
+    ./config/hyprland.nix
     # ../../config/neovim.nix
     ./config/rofi/rofi.nix
     # ../../config/rofi/config-emoji.nix

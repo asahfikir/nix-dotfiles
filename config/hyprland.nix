@@ -10,7 +10,7 @@
 
 let
   hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
-  inherit (import ../hosts/${host}/variables.nix)
+  inherit (import ../variables.nix)
     browser
     terminal
     extraMonitorSettings
@@ -45,12 +45,10 @@ with lib;
           env = MOZ_ENABLE_WAYLAND, 1
           exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = killall -q swww;sleep .5 && swww init
           exec-once = killall -q waybar;sleep .5 && waybar
-          exec-once = killall -q swaync;sleep .5 && swaync
+          # exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -129,25 +127,31 @@ with lib;
             pseudotile = true
             preserve_split = true
           }
+
+          # Keybindings
           bind = ${modifier},Return,exec,${terminal}
-          bind = ${modifier}SHIFT,Return,exec,rofi-launcher
-          bind = ${modifier}SHIFT,W,exec,web-search
-          bind = ${modifier}ALT,W,exec,wallsetter
-          bind = ${modifier}SHIFT,N,exec,swaync-client -rs
-          bind = ${modifier},W,exec,${browser}
-          bind = ${modifier},E,exec,emopicker9000
-          bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,discord
-          bind = ${modifier},O,exec,obs
-          bind = ${modifier},C,exec,hyprpicker -a
-          bind = ${modifier},G,exec,gimp
-          bind = ${modifier}SHIFT,G,exec,godot4
-          bind = ${modifier},T,exec,thunar
-          bind = ${modifier},M,exec,spotify
-          bind = ${modifier},Q,killactive,
-          bind = ${modifier},P,pseudo,
-          bind = ${modifier}SHIFT,I,togglesplit,
+          bind = ${modifier},B,exec,${browser}
           bind = ${modifier},F,fullscreen,
+          bind = ${modifier},Q,killactive,
+          bind = ${modifier},E,exec,thunar
+          bind = ${modifier}CTRL,Return,exec,rofi-launcher
+          bind = ${modifier},P,pseudo,
+          bind = ${modifier}SHIFT,W,exec,~/.dotfiles/scripts/walswitcher.sh
+          # bind = ${modifier}SHIFT,N,exec,swaync-client -rs
+          # bind = ${modifier},E,exec,emopicker9000
+
+          # Fullscreen screenshot
+          bind = ${modifier}, Print, exec, grim ~/Pictures/screenshot-$(date +%Y-%m-%d-%H-%M-%S).png
+
+          # Select region screenshot
+          bind = ${modifier}+Shift, Print, exec, grim -g "$(slurp)" - | tee ~/Pictures/screenshot-$(date +%Y-%m-%d-%H-%M-%S).png | wl-copy
+          
+          bind = ${modifier},S,exec,screenshootin
+          bind = ${modifier},O,exec,obs
+          # bind = ${modifier},C,exec,hyprpicker -a  # colorpicker
+          # bind = ${modifier},G,exec,gimp           # photoshop alt
+          # bind = ${modifier}SHIFT,G,exec,godot4     # game engine
+          bind = ${modifier}SHIFT,I,togglesplit,
           bind = ${modifier}SHIFT,F,togglefloating,
           bind = ${modifier}SHIFT,C,exit,
           bind = ${modifier}SHIFT,left,movewindow,l
