@@ -124,6 +124,7 @@
      waybar
      tokyo-night-gtk
      bibata-cursors
+     figlet
 
      # System Utilities
      brightnessctl
@@ -135,6 +136,7 @@
      home-manager
 
      # Utilities
+     nix-prefetch
      slack
      obs-studio
      killall
@@ -299,7 +301,7 @@
       sizes = {
         applications = 15;
         terminal = 19;
-        desktop = 11;
+        desktop = 15;
         popups = 15;
       };
     };

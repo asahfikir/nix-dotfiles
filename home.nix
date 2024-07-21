@@ -25,7 +25,7 @@ in
     # ../../config/rofi/config-long.nix
     # ../../config/swaync.nix
     ./config/waybar.nix
-    # ../../config/wlogout.nix
+    ./config/wlogout.nix
   ];
 
   # # Place Files Inside Home Directory
@@ -37,12 +37,12 @@ in
   #   source = ../../config/fastfetch;
   #   recursive = true;
   # };
-  # home.file.".config/wlogout/icons" = {
-  #   source = ../../config/wlogout;
-  #   recursive = true;
-  # };
-  # home.file.".face.icon".source = ../../config/face.jpg;
-  # home.file.".config/face.jpg".source = ../../config/face.jpg;
+  home.file.".config/wlogout/icons" = {
+    source = ./config/wlogout;
+    recursive = true;
+  };
+  home.file.".face.icon".source = ./config/face.jpg;
+  home.file.".config/face.jpg".source = ./config/face.jpg;
   # home.file.".config/swappy/config".text = ''
   #   [Default]
   #   save_dir=/home/${username}/Pictures/Screenshots
