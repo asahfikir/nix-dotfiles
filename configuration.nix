@@ -5,8 +5,10 @@
 { inputs, outputs, config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
+
     # input home manager
     inputs.home-manager.nixosModules.home-manager
   ];

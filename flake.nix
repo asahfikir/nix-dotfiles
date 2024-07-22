@@ -1,5 +1,5 @@
 {
-  description = "AsahFikir NixOS Flake Configuration based on Mysterio77 Starter Template";
+  description = "AsahFikir NixOS Flake Configuration based on Mysterio77 Starter Template and ZaneyOS";
 
   inputs = {
     # Nixpkgs
@@ -29,12 +29,6 @@
       host = "DLLPTP";
       username = "fikri";
       lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
     in {
       # System wide configuration
       nixosConfigurations = {
