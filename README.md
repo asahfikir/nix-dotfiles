@@ -18,7 +18,7 @@ Do checkout their work.
 - emacs TODO: Setup using doomemacs
 
 ### Terminal Goodies
-- alacritty (default)
+- kitty (default)
 - tmux *TODO: Move to home manager
 - zellij *TODO: Move to home manager
 - fzf

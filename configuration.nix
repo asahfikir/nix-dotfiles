@@ -75,97 +75,100 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = (with pkgs; [
-     # Editor
-     neovim
-     emacs
-     vscode
-     helix
-     zed-editor
+    # Editor
+    neovim
+    emacs
+    vscode
+    helix
+    zed-editor
 
-     # PHP Development Goodies
-     php82
-     php82Packages.composer
-     php82Extensions.gd
-     php82Extensions.mbstring
-     dbeaver-bin
+    # PHP Development Goodies
+    php82
+    php82Packages.composer
+    php82Extensions.gd
+    php82Extensions.mbstring
+    dbeaver-bin
 
-     # Node Environment
-     nodejs_22
-     bun
+    # Node Environment
+    nodejs_22
+    bun
 
-     # Rust
-     rustup
+    # Rust
+    rustup
 
-     # Terminal Goodies
-     alacritty
-     tmux
-     zellij
-     yazi
-     wtf
-     nnn
-     git
-     tldr
-     ripgrep
-     fzf
-     bat
-     zoxide
-     lazygit
+    # Terminal Goodies
+    fd
+    xh # curl alt
+    jless # json viewer
+    kitty
+    tmux
+    zellij
+    yazi
+    wtf
+    nnn
+    git
+    tldr
+    ripgrep
+    fzf
+    bat
+    zoxide
+    lazygit
 
-     # EyeCandies
-     hyprland
-     xdg-desktop-portal-gtk
-     xdg-desktop-portal-hyprland
-     hyprpaper
-     xwayland
-     meson
-     wayland-protocols
-     wayland-utils
-     wl-clipboard
-     rofi-wayland
-     sddm
-     waybar
-     tokyo-night-gtk
-     bibata-cursors
-     figlet
+    # EyeCandies
+    hyprland
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    hyprpaper
+    xwayland
+    meson
+    wayland-protocols
+    wayland-utils
+    wl-clipboard
+    rofi-wayland
+    sddm
+    waybar
+    tokyo-night-gtk
+    bibata-cursors
+    figlet
 
-     # System Utilities
-     brightnessctl
-     pavucontrol
-     pipewire
-     wireplumber
-     networkmanagerapplet
-     dunst
-     home-manager
+    # System Utilities
+    brightnessctl
+    pavucontrol
+    pipewire
+    wireplumber
+    networkmanagerapplet
+    dunst
+    home-manager
 
-     # Utilities
-     nix-prefetch
-     slack
-     obs-studio
-     killall
-     gum
-     htop
-     wget
-     grim
-     slurp
-     xclip
-     wlroots
-     unzip
-     mpv
-     gcc
+    # Utilities
+    nix-prefetch
+    slack
+    obs-studio
+    killall
+    gum
+    htop
+    wget
+    grim
+    slurp
+    xclip
+    wlroots
+    unzip
+    mpv
+    gcc
 
-     # Browsers
-     brave
-     firefox-wayland
-     arc-browser
+    # Browsers
+    brave
+    firefox-wayland
+    arc-browser
 
-     # Misc
-     fastfetch
+    # Misc
+    fastfetch
   ]) ++ (with pkgs.gnome; [
-    nautilus # file manager
-    zenity # shell dialog
-    gnome-tweaks # eye candy
-    eog # image viewer
-  ]);
+      nautilus # file manager
+      zenity # shell dialog
+      gnome-tweaks # eye candy
+      eog # image viewer
+    ]);
 
   services.nginx.enable = true;
 
@@ -192,7 +195,7 @@
   environment.variables = {
     EDITOR = "helix";
     BROWSER = "brave";
-    TERMINAL = "alacritty";
+    TERMINAL = "kitty";
   };
 
   # Enable Screensharing

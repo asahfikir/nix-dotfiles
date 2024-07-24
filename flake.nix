@@ -3,9 +3,8 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs = {
-      url = "nixpkgs/nixos-24.05";
-    };
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     # Stylix - base16 color
     stylix.url = "github:danth/stylix";
@@ -15,6 +14,11 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Let's setup some emacs
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    emacs-overlay.inputs.nixpkgs-stable.follows = "nixpkgs";
   };
 
   outputs = {
