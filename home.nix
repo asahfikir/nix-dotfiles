@@ -17,15 +17,11 @@ in
 
   # Import Program Configurations
   imports = [
-    # ../../config/emoji.nix
     ./config/hyprland.nix
-    # ../../config/neovim.nix
     ./config/rofi/rofi.nix
-    # ../../config/rofi/config-emoji.nix
-    # ../../config/rofi/config-long.nix
-    # ../../config/swaync.nix
     ./config/waybar.nix
     ./config/wlogout.nix
+    # ./config/starship.nix
   ];
 
   # # Place Files Inside Home Directory
@@ -33,10 +29,10 @@ in
   #   source = ../../config/wallpapers;
   #   recursive = true;
   # };
-  # home.file.".config/fastfetch" = {
-  #   source = ../../config/fastfetch;
-  #   recursive = true;
-  # };
+  home.file.".config/fastfetch" = {
+    source = ./config/fastfetch;
+    recursive = true;
+  };
   home.file.".config/wlogout/icons" = {
     source = ./config/wlogout;
     recursive = true;
@@ -158,6 +154,7 @@ in
     };
 
     home-manager.enable = true;
+
     hyprlock = {
       enable = true;
       settings = {

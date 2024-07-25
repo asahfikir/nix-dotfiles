@@ -42,7 +42,8 @@
       },
       {
           "type": "custom",
-          "format": "\u001b[31m OS -> ZaneyOS 2.2"
+          "value": "auto",
+          "format": "\u001b[31m NIXOS"
       },
       {
           "type": "kernel",
