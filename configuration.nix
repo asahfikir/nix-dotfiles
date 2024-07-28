@@ -54,7 +54,7 @@
     enable = true;
   };
 
-  services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fikri = {
@@ -87,6 +87,8 @@
     php82Packages.composer
     php82Extensions.gd
     php82Extensions.mbstring
+    phpactor
+    emacsPackages.phpactor
     dbeaver-bin
 
     # Node Environment
@@ -126,7 +128,6 @@
     wayland-utils
     wl-clipboard
     rofi-wayland
-    sddm
     waybar
     tokyo-night-gtk
     bibata-cursors
