@@ -30,6 +30,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.loader.grub.useOSProber = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.enableAllFirmware = true;
+  hardware.firmware = [ pkgs.firmwareLinuxNonfree pkgs.sof-firmware ];
 
   networking.hostName = "DLLPTP"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
