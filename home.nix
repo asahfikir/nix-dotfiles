@@ -22,11 +22,12 @@ in
     ./config/waybar.nix
     ./config/wlogout.nix
     # ./config/starship.nix
+    ./config/lf.nix
   ];
 
   # # Place Files Inside Home Directory
   # home.file."Pictures/Wallpapers" = {
-  #   source = ../../config/wallpapers;
+    # source = ../../config/wallpapers;
   #   recursive = true;
   # };
   home.file.".config/fastfetch" = {
