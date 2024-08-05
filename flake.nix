@@ -3,8 +3,11 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    # nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
+    terminaltexteffects.url = "github:ChrisBuilds/terminaltexteffects";
 
     # Stylix - base16 color
     stylix.url = "github:danth/stylix";
@@ -21,24 +24,28 @@
     #emacs-overlay.inputs.nixpkgs-stable.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";
       host = "DLLPTP";
       username = "fikri";
       lib = nixpkgs.lib;
-    in {
+    in
+    {
       # System wide configuration
       nixosConfigurations = {
         # configuration for DLLPTP hostname
         ${host} = lib.nixosSystem {
-          specialArgs = { inherit inputs outputs system; };
+          specialArgs = {
+            inherit inputs outputs system;
+          };
           system = "x86_64-linux";
           # use the configuration from the configuration we copied from /etc/nixos
           modules = [
@@ -50,7 +57,6 @@
           ];
         };
       };
-
 
       # Home Manager Configuration;
       # homeConfigurations."fikri" = home-manager.lib.homeManagerConfiguration {

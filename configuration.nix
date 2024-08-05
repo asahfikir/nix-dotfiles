@@ -92,7 +92,6 @@
     php82Extensions.mbstring
     phpactor
     emacsPackages.phpactor
-    dbeaver-bin
 
     # Node Environment
     nodejs_22
@@ -102,6 +101,7 @@
     rustup
 
     # Terminal Goodies
+    inputs.terminaltexteffects.packages.${pkgs.system}.default
     fd
     xh # curl alt
     jless # json viewer
@@ -144,6 +144,7 @@
     networkmanagerapplet
     dunst
     home-manager
+    alsa-utils
 
     # Utilities
     nix-prefetch
@@ -164,16 +165,17 @@
     # Browsers
     brave
     firefox-wayland
-    arc-browser
+    microsoft-edge
 
     # Misc
     fastfetch
-  ]) ++ (with pkgs.gnome; [
-      nautilus # file manager
-      zenity # shell dialog
-      gnome-tweaks # eye candy
-      eog # image viewer
-    ]);
+
+    # Gnome app
+    nautilus # file manager
+    zenity # shell dialog
+    eog # image viewer
+    gnome-tweaks # eye candy
+  ]);
 
   services.nginx.enable = true;
 
@@ -198,7 +200,7 @@
 
   # Set System Variable
   environment.variables = {
-    EDITOR = "helix";
+    EDITOR = "hx";
     BROWSER = "brave";
     TERMINAL = "kitty";
   };
@@ -232,14 +234,15 @@
   ];
 
   # sounds
-  sound.enable = true;
+  # sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    audio.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
+    jack.enable = false;
   };
 
   # Let's setup ZSH
